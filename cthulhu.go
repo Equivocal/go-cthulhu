@@ -8,16 +8,16 @@ import (
 
 type Resource struct {
 	path    string
-	handler RequestHandler
+	handler http.Handler
 }
 
 type Cthulhu struct {
-	resources map[string]RequestHandler
+	resources map[string]http.Handler
 }
 
-func (c *Cthulhu) RegisterResource(path string, handler RequestHandler) {
+func (c *Cthulhu) RegisterResource(path string, handler http.Handler) {
 	if c.resources == nil {
-		c.resources = make(map[string]RequestHandler)
+		c.resources = make(map[string]http.Handler)
 	}
 	c.resources[path] = handler
 }
